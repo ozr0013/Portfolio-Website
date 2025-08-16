@@ -50,9 +50,9 @@ function setupNavigation() {
 function setupTypingEffect() {
     const typingText = document.querySelector('.typing-text');
     const texts = [
-        "Hi, I'm a Developer",
-        "I Build Amazing Things",
-        "Welcome to My Portfolio"
+        "Software Engineering Intern @ OneMain",
+        "CS (Honors) @ University of Utah",
+        "Building APIs, Data Systems, and UIs"
     ];
     
     let textIndex = 0;
@@ -133,36 +133,36 @@ async function loadGitHubProjects() {
     // Sample projects data (replace with actual GitHub API call)
     const sampleProjects = [
         {
-            name: "Modern Portfolio Website",
-            description: "A responsive portfolio website built with HTML, CSS, and JavaScript featuring dark theme and animations.",
-            language: "JavaScript",
-            stars: 15,
-            forks: 3,
-            html_url: "#"
-        },
-        {
-            name: "React Task Manager",
-            description: "A full-stack task management application built with React, Node.js, and MongoDB.",
-            language: "React",
-            stars: 28,
-            forks: 7,
-            html_url: "#"
-        },
-        {
-            name: "Python Data Analyzer",
-            description: "Data analysis tool for processing and visualizing large datasets using Python and Pandas.",
+            name: "Investify-AI",
+            description: "AI-assisted investment insights with Python backend and HTML/CSS/JS front-end.",
             language: "Python",
-            stars: 12,
-            forks: 2,
-            html_url: "#"
+            stars: 0,
+            forks: 0,
+            html_url: "https://github.com/ozr0013"
         },
         {
-            name: "Mobile Weather App",
-            description: "Cross-platform weather application built with React Native and OpenWeather API.",
-            language: "React Native",
-            stars: 22,
-            forks: 5,
-            html_url: "#"
+            name: "Spreadsheet",
+            description: "C# spreadsheet engine with HTML/JavaScript UI components.",
+            language: "C#",
+            stars: 0,
+            forks: 0,
+            html_url: "https://github.com/ozr0013"
+        },
+        {
+            name: "Epidemic Genius",
+            description: "Python models and visualizations for epidemic spread dynamics.",
+            language: "Python",
+            stars: 0,
+            forks: 0,
+            html_url: "https://github.com/ozr0013/Epidemic-Genius"
+        },
+        {
+            name: "Portfolio",
+            description: "Personal portfolio showcasing projects and experience (this site).",
+            language: "HTML",
+            stars: 0,
+            forks: 0,
+            html_url: "https://OmarRizwan7.com"
         }
     ];
     
