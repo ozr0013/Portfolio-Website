@@ -388,7 +388,41 @@
             </div>
         </div>
     </footer>
-    
-    <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS with your public key
+    emailjs.init("e1uZjqSyNuD5EqkjM"); // e.g. 'public_123abcXYZ'
+
+    // Handle contact form submission
+    document
+      .getElementById("contact-form")
+      .addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+
+        emailjs
+          .send("service_olje8gx", "template_ehhs4sd", {
+            from_name: name,
+            from_email: email,
+            message: message,
+          })
+          .then(
+            function () {
+              alert(" Message sent successfully!");
+              document.getElementById("contact-form").reset();
+            },
+            function (error) {
+              console.error("Error sending email:", error);
+              alert("Something went wrong. Please try again later.");
+            }
+          );
+      });
+  </script>
+
+  <!-- Other Scripts -->
+  <script src="script.js"></script>
 </body>
 </html>
