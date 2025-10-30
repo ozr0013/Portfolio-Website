@@ -225,60 +225,65 @@ function createProjectCard(project) {
 
 // Contact Form
 function setupContactForm() {
-    const contactForm = document.getElementById('contact-form');
-    
-    contactForm?.addEventListener('submit', function(e) {
+    // Wait until the DOM fully loads
+    const contactForm = document.querySelector('#contact-form');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        const formData = new FormData(this);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const message = formData.get('message');
-        
-        // Simple validation
+
+        const name = this.querySelector('#name').value.trim();
+        const email = this.querySelector('#email').value.trim();
+        const message = this.querySelector('#message').value.trim();
+
+        // Basic validation
         if (!name || !email || !message) {
-            showNotification('Please fill in all fields', 'error');
+            showNotification('⚠️ Please fill out all fields.', 'error');
             return;
         }
-        
-        // Simulate form submission
-        showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
-        this.reset();
+
+        // Simulated form submission success
+        setTimeout(() => {
+            showNotification('Thanks, ' + name + '! Your message has been sent successfully.', 'success');
+            this.reset();
+        }, 300);
     });
 }
 
+
 // Notification System
 function showNotification(message, type = 'info') {
+    const existing = document.querySelector('.notification');
+    if (existing) existing.remove();
+
     const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
+    notification.className = `notification ${type}`;
     notification.textContent = message;
-    
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        color: white;
-        font-weight: 500;
-        z-index: 10000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#6366f1'};
-    `;
-    
+
+    Object.assign(notification.style, {
+        position: 'fixed',
+        bottom: '30px',
+        right: '30px',
+        background: type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#6366f1',
+        color: '#fff',
+        padding: '1rem 1.5rem',
+        borderRadius: '8px',
+        fontWeight: '500',
+        zIndex: '9999',
+        opacity: '0',
+        transition: 'opacity 0.3s ease'
+    });
+
     document.body.appendChild(notification);
-    
+
+    // Fade in
+    requestAnimationFrame(() => (notification.style.opacity = '1'));
+
+    // Auto-remove
     setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-    
-    setTimeout(() => {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
+        notification.style.opacity = '0';
+        setTimeout(() => notification.remove(), 400);
+    }, 3500);
 }
 
 // Scroll Effects
